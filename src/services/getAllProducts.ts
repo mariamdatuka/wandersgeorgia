@@ -1,11 +1,18 @@
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "https://fakestoreapi.com/",
+export const instance = axios.create({
+  baseURL: "https://fakestoreapi.com",
 });
 
 const getAllProducts = async () => {
-  return instance.get("/products");
+  try {
+    const response = await instance.get("/products");
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || "Something went wrong. Please try again."
+    );
+  }
 };
 
 export default getAllProducts;

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface Product {
   id: number;
   title: string;
-  price: string;
+  price: number;
   category: string;
   description: string;
   image: string;
@@ -21,7 +21,7 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     getProducts: (state, action) => {
-      state.products.push(...action.payload);
+      state.products = action.payload;
     },
   },
 });
